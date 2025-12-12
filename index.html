@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Sepatu Azwan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <div class="logo">
+                    <img src="azwann.png" alt="Logo Toko Sepatu Azwan">
+                </div>
+                <div>
+                    <h1>Toko Sepatu Azwan</h1>
+                    <p class="tag">Kualitas & kenyamanan setiap langkah</p>
+                </div>
+            </div>
+            <nav class="nav">
+                <button class="btn icon">🛒 <span id="cartCount">0</span></button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Ticker / tulisan berjalan muncul dari kanan di bawah navbar -->
+    <div class="ticker" aria-live="polite" aria-atomic="true">
+      <div class="ticker-track">
+        <div class="ticker-text">
+          Promo: Gratis ongkir hari ini — Diskon hingga 15% untuk pembelian di atas Rp 500.000 •
+          Cek koleksi terbaru Sepatu Lari & Sepatu Santai — Stok terbatas!
+        </div>
+        <!-- duplicate untuk loop seamless -->
+        <div class="ticker-text" aria-hidden="true">
+          Promo: Gratis ongkir hari ini — Diskon hingga 15% untuk pembelian di atas Rp 500.000 •
+          Cek koleksi terbaru Sepatu Lari & Sepatu Santai — Stok terbatas!
+        </div>
+      </div>
+    </div>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Pilihan Sepatu Populer</h2>
+            <p>Pilih model yang cocok untuk aktivitasmu — lari, santai, atau sehari-hari.</p>
+        </section>
+
+        <section class="product-grid" aria-label="Daftar produk">
+            <article class="product-card">
+                <div class="product-media">
+                    <img src="adidas.jpg" alt="Sepatu Lari ">
+                </div>
+                <h3>Sepatu Lari X</h3>
+                <p class="price">Rp 500.000</p>
+                <div class="controls">
+                    <input type="number" id="qtyLari" min="0" value="0" aria-label="Jumlah Sepatu Lari X">
+                    <button class="btn primary" onclick="tambahKeKeranjang('Lari', 500000, document.getElementById('qtyLari').value)">Tambah</button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-media">
+                    <img src="puma.jpg" alt="Sepatu Santai ">
+                </div>
+                <h3>Sepatu Santai Z</h3>
+                <p class="price">Rp 350.000</p>
+                <div class="controls">
+                    <input type="number" id="qtySantai" min="0" value="0" aria-label="Jumlah Sepatu Santai Z">
+                    <button class="btn primary" onclick="tambahKeKeranjang('Santai', 350000, document.getElementById('qtySantai').value)">Tambah</button>
+                </div>
+            </article>
+        </section>
+
+        <section class="cart" aria-label="Keranjang belanja">
+            <div class="cart-inner">
+                <h2>🛒 Keranjang Belanja</h2>
+                <ul id="keranjangList" class="cart-list">
+                </ul>
+
+                <div class="summary">
+                    <p id="subTotal">Subtotal: Rp 0</p>
+                    <p id="infoDiskon" class="muted"></p>
+                    <h3>Total Bayar: <span id="totalAkhir">Rp 0</span></h3>
+                    <div class="cart-actions">
+                        <button class="btn outline" onclick="resetKeranjang()">Kosongkan</button>
+                        <button class="btn primary" onclick="checkout()">Checkout & Hitung</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© <span id="year"></span> Toko Sepatu Azwan — Gratis ongkir di kota tertentu</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // kecilkan interaksi UI: update tahun dan cart count
+        document.getElementById('year').textContent = new Date().getFullYear();
+        function updateCartCount(n){ document.getElementById('cartCount').textContent = n; }
+        // expose helper untuk script.js jika dibutuhkan
+        window.updateCartCount = updateCartCount;
+    </script>
+</body>
+</html>
